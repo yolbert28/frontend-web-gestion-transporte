@@ -1,23 +1,33 @@
-
+// src/pages/Login.tsx
 import React from 'react';
+import './Login.css'; 
 
 const Login: React.FC = () => {
   return (
-    <div>
-      <h2>Login</h2>
+  <div className='main-container'>
+    <div className="login-container">
+      <h2>Iniciar sesión</h2>
       <form>
-        <div>
-          <label>Correo:</label>
-          <input type="email" required />
+        <label>Correo electrónico</label>
+        <input type="email" required />
+        
+        <label>Contraseña</label>
+        <input type="password" required />
+        
+        <button type="submit">Iniciar sesión</button>
+        
+        <div className="forgot-password">
+          <a href="/forgot-password">¿Olvidaste la contraseña?</a>
         </div>
-        <div>
-          <label>Contraseña:</label>
-          <input type="password" required />
+        
+        <div className="register">
+          ¿No tienes cuenta? <a href="/register">Regístrate</a>
         </div>
-        <button type="submit">Entrar</button>
       </form>
     </div>
+  </div>
   );
 };
 
 export default Login;
+

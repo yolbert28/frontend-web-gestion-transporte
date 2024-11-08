@@ -1,35 +1,37 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 import "./NavBar.css";
 
 export default function NavBar(): JSX.Element {
-	return <div className="body">
-		<div className="spacer"></div>
-		<div className="content">
-			<div className="navbar">
-				<div className="logo">
-					<a href="http://localhost:5173/">SafeRoute</a>
-				</div>
-				<nav className="bar">
-					<ul className="options">
-						<li>
-							<a className="option" href="/units" >Inicio</a>
-						</li>
-						<li>
-							<a className="option" href="/clients" >Servicios</a>
-						</li>
-						<li >
-							<a className="option" href="">Sobre Nosotros</a>
-						</li>
-					</ul>
-				</nav>
-				<div className="div-buttons">
-					<a href="">Iniciar Sesion</a>
-					<a href="">Registrar</a>
-				</div>
-			</div>
-			<div className="pages">
-				<Outlet/>
-			</div>
-		</div>
-	</div>;
+  return (
+    <div className="body">
+      <div className="spacer"></div>
+      <div className="content">
+        <div className="navbar">
+          <div className="logo">
+            <Link to="/">SafeRoute</Link>
+          </div>
+          <nav className="bar">
+            <ul className="options">
+              <li>
+                <Link className="option" to="/">Inicio</Link>
+              </li>
+              <li>
+                <Link className="option" to="/clients">Servicios</Link>
+              </li>
+              <li>
+                <Link className="option" to="/about">Sobre Nosotros</Link>
+              </li>
+            </ul>
+          </nav>
+          <div className="div-buttons">
+            <Link to="/login">Iniciar Sesión</Link>
+            <Link to="/register">Registrar</Link>
+          </div>
+        </div>
+        <div className="pages">
+          <Outlet />
+        </div>
+      </div>
+    </div>
+  );
 }

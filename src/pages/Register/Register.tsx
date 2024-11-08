@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-
+import './Register.css'
 const Register: React.FC = () => {
   const [formData, setFormData] = useState({
     identityId: '',
@@ -21,8 +21,9 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
+   <div className='main-container'>
+    <div className='register-container'>
+      <h2>Registro</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Id de Identidad:</label>
@@ -75,8 +76,15 @@ const Register: React.FC = () => {
           />
         </div>
         <button type="submit">Registrar</button>
+        <div className='already-account'>
+         <a> ¿Ya tienes una cuenta?</a>
+        </div>
+        <div className='login'>
+          <a href=""> Iniciar Sesion</a>
+        </div>
       </form>
     </div>
+  </div>  
   );
 };
 
