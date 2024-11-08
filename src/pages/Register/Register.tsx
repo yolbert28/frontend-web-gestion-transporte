@@ -1,0 +1,83 @@
+
+import React, { useState } from 'react';
+
+const Register: React.FC = () => {
+  const [formData, setFormData] = useState({
+    identityId: '',
+    firstName: '',
+    lastName: '',
+    phone: '',
+    email: ''
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log(formData); // Puedes conectar aquí con tu API en el futuro
+  };
+
+  return (
+    <div>
+      <h2>Register</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Id de Identidad:</label>
+          <input
+            type="text"
+            name="identityId"
+            value={formData.identityId}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Nombre:</label>
+          <input
+            type="text"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Apellido:</label>
+          <input
+            type="text"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Teléfono:</label>
+          <input
+            type="tel"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Correo:</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <button type="submit">Registrar</button>
+      </form>
+    </div>
+  );
+};
+
+export default Register;
