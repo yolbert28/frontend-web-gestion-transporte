@@ -6,7 +6,8 @@ import NavBar from './pages/layouts/NavBar'
 import Index from './pages/Index/Index'
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
-
+import Services from './pages/Services/Services'
+import ServicesComponent from './components/ServicesComponent/ServicesComponent';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -24,16 +25,12 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register />
-      }
-      // {
-      //   path: '/clients',
-      //   element: <Clients />
-      // },
-      // {
-      //   path: '/units',
-      //   element: <Units />
-      // }
-    ]
+      },
+      { path: '/services', 
+        element: <Services /> },
+      { path: '/service-component',
+        element: <ServicesComponent />}
+      ]
   }
 ])
 

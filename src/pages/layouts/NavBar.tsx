@@ -16,7 +16,7 @@ export default function NavBar(): JSX.Element {
                 <Link className="option" to="/">Inicio</Link>
               </li>
               <li>
-                <Link className="option" to="/clients">Servicios</Link>
+                <Link className="option" to="/services">Servicios</Link>
               </li>
               <li>
                 <Link className="option" to="/about">Sobre Nosotros</Link>
