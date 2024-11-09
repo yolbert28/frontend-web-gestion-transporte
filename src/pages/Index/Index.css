@@ -8,7 +8,6 @@
     background-position: 0 center;
     background-repeat: no-repeat;
     background-size: 2500px;
-    /* background-attachment: fixed; */
     display: flex;
     align-items: center;
     width: 100%;
@@ -16,6 +15,7 @@
 }
 
 .with-blur {
+    position: relative;
     margin-left: 60px;
     background-color: #acacac44;
     backdrop-filter: blur(10px);
@@ -23,14 +23,54 @@
     border: 1px solid #fff;
     width: 700px;
     height: 400px;
+    overflow: hidden;
 }
 
+/* Espaciador */
 .white-spacer {
     width: 100vw;
     height: 20px;
     background-color: #fff;
 }
 
+/* Estilos para el carrusel */
+.carousel {
+    display: flex;
+    width: 100%;
+    transition: transform 1s ease-in-out;
+}
+
+.carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 160px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 2; /* Aseguramos que esté visible encima de las imágenes */
+}
+
+.carousel-indicator {
+    width: 10px;
+    height: 10px;
+    background-color: #000;
+    border-radius: 50%;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+
+.carousel-indicator.active {
+    opacity: 1;
+}
+
+/* Resto del estilo para la información */
 .info {
     width: 100%;
     height: 500px;
@@ -39,16 +79,19 @@
     grid-template-columns: 1fr 1fr;
     gap: 50px;
     align-items: center;
+    border-bottom: 3px solid #ddd;
 }
 
 .info-image {
     display: flex;
     justify-content: center;
     align-items: center;
+    border-right: 3px solid #ddd;
 }
 
 .info-image-img {
-    height: 300px;
+    height: 100%;
+    width: 100vh;
 }
 
 .info-text {
@@ -66,4 +109,5 @@
 
 .m-70 {
     margin-left: 90px;
+    border-right: 3px solid #ddd;
 }

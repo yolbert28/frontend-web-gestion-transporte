@@ -1,0 +1,98 @@
+body, html { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;   
+}
+
+.carga-ligera-container {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    margin: auto;
+    font-family: Roboto;
+}
+
+.carga-ligera-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group-horizontal {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    text-align: left;
+    margin-bottom: 0.5rem;
+}
+
+.input-field {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #e0e0e0;
+    box-sizing: border-box;
+}
+
+.input-field select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff; /* Asegura que el fondo sea blanco */
+    color: #333; /* Asegura que el texto tenga un buen contraste */
+    box-sizing: border-box;
+}
+
+.info-box {
+    background-color: #bdbdbd;
+    padding: 10px;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.btn-contratar {
+    width: 100%;
+    padding: 10px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.btn-contratar:hover {
+    background-color: #333;
+}
