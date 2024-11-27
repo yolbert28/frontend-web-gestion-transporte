@@ -25,6 +25,9 @@ const Services: React.FC = () => {
     navigate('/service-component'); // Redirige a /service-component
   };
   // Filtrar servicios por categorías
+  const handleMapClick = () => {
+    navigate('/map'); // Redirige a /map
+  };
   const categories = Array.from(new Set(services.map(service => service.category)));
 
   return (
@@ -40,7 +43,7 @@ const Services: React.FC = () => {
                 <div key={service.id} className="service-card">
                   <h3>{service.title}</h3>
                   <p>{service.description}</p>
-                  <button onClick={handleContratar}>Contratar</button>
+                  <button onClick={handleContratar} onAuxClick={handleMapClick}>Contratar</button>
                 </div>
               ))}
           </div>

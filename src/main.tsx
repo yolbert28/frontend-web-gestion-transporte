@@ -8,6 +8,7 @@ import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Services from './pages/Services/Services'
 import ServicesComponent from './components/ServicesComponent/ServicesComponent';
+import Map from "./components/Map";
 const router = createBrowserRouter([
   {
     path: '/',
@@ -29,7 +30,11 @@ const router = createBrowserRouter([
       { path: '/services', 
         element: <Services /> },
       { path: '/service-component',
-        element: <ServicesComponent />}
+        element: <ServicesComponent />},
+        { 
+          path: '/map', // Nueva ruta para el mapa
+          element: <Map /> 
+        }
       ]
   }
 ])
