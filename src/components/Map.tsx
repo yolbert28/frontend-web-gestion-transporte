@@ -6,7 +6,7 @@ interface MapProps {
     origen: [number, number] | null;
     destino: [number, number] | null;
   };
-  route: any; // Ruta con las coordenadas
+  route: [number, number][] | null; // Ruta con las coordenadas
 }
 
 export default function Map({ coordinates, route }: MapProps): JSX.Element {
@@ -14,9 +14,9 @@ export default function Map({ coordinates, route }: MapProps): JSX.Element {
   const zoomLevel = 10;
 
   return (
-    <MapContainer center={defaultPosition} zoom={zoomLevel} style={{ height: "100%", width: "100%" }}>
+    <MapContainer center={coordinates.origen || defaultPosition} zoom={zoomLevel} style={{ height: "100%", width: "100%" }}>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      
+
       {/* Mostrar marcador de origen */}
       {coordinates.origen && (
         <Marker position={coordinates.origen}>
@@ -31,8 +31,17 @@ export default function Map({ coordinates, route }: MapProps): JSX.Element {
         </Marker>
       )}
 
-      {/* Mostrar la ruta como una polyline */}
-      {route && <Polyline positions={route} color="blue" />}
+      {/* Mostrar la ruta como una polyline roja */}
+      {route && (
+        <Polyline
+          positions={route}
+          pathOptions={{
+            color: "red", // Color de la línea
+            weight: 4,    // Grosor de la línea
+            opacity: 0.8, // Opacidad de la línea
+          }}
+        />
+      )}
     </MapContainer>
   );
 }

@@ -31,10 +31,7 @@ const router = createBrowserRouter([
         element: <Services /> },
       { path: '/service-component',
         element: <ServicesComponent />},
-        { 
-          path: '/map', // Nueva ruta para el mapa
-          element: <Map /> 
-        }
+       
       ]
   }
 ])
