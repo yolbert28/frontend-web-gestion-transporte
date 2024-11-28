@@ -15,9 +15,11 @@ export default function ServicesComponent(): JSX.Element {
     { origen: null, destino: null }
   );
   const [route, setRoute] = useState<any>(null);
+  const [travelTime, setTravelTime] = useState<number | null>(null); // Tiempo estimado en milisegundos
+  const [simulationProgress, setSimulationProgress] = useState<number>(0); // Porcentaje de progreso
+  const [isSimulating, setIsSimulating] = useState(false); // Indica si la simulación está en curso
   const [loading, setLoading] = useState(false);
 
-  // Obtener la fecha actual en formato YYYY-MM-DD
   const getTodayDate = () => {
     const today = new Date();
     const year = today.getFullYear();
@@ -26,7 +28,6 @@ export default function ServicesComponent(): JSX.Element {
     return `${year}-${month}-${day}`;
   };
 
-  // Validar fecha de salida
   const handleFechaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedDate = e.target.value;
     const today = getTodayDate();
@@ -40,7 +41,6 @@ export default function ServicesComponent(): JSX.Element {
     }
   };
 
-  // Obtener coordenadas de una ciudad usando GraphHopper
   const fetchCoordinates = async (address: string) => {
     const url = `https://graphhopper.com/api/1/geocode?key=${GRAPH_HOPPER_API_KEY}&q=${encodeURIComponent(address)}`;
     try {
@@ -56,23 +56,19 @@ export default function ServicesComponent(): JSX.Element {
     }
   };
 
-  // Obtener la ruta entre origen y destino
   const fetchRoute = async (origenCoords: [number, number], destinoCoords: [number, number]) => {
     const url = `https://graphhopper.com/api/1/route?` +
       `point=${origenCoords[0]},${origenCoords[1]}&` +
       `point=${destinoCoords[0]},${destinoCoords[1]}&` +
       `calc_points=true&points_encoded=false&` +
       `profile=car&key=${GRAPH_HOPPER_API_KEY}`;
-  
+
     try {
       const response = await axios.get(url);
       if (response.data.paths && response.data.paths.length > 0) {
-        // La API devuelve un array de puntos: [[lon, lat], [lon, lat], ...]
-        const path = response.data.paths[0].points.coordinates.map((point: [number, number]) => [
-          point[1], // lat
-          point[0], // lon
-        ]);
-        setRoute(path); // Ajustar el formato para Leaflet
+        const path = response.data.paths[0];
+        setRoute(path.points.coordinates.map((point: [number, number]) => [point[1], point[0]]));
+        setTravelTime(path.time); // Tiempo estimado en milisegundos
       } else {
         console.error("No se encontraron rutas.");
       }
@@ -80,14 +76,32 @@ export default function ServicesComponent(): JSX.Element {
       console.error("Error obteniendo la ruta:", error);
     }
   };
-  // Manejar la contratación
+
+  const startSimulation = () => {
+    if (!travelTime) return;
+
+    setSimulationProgress(0);
+    setIsSimulating(true);
+
+    const totalDuration = travelTime / 1000; // Convertir milisegundos a segundos
+    const intervalDuration = 100; // Duración del intervalo en milisegundos
+    const increment = (100 / totalDuration) * (intervalDuration / 500); // Incremento por intervalo
+
+    const interval = setInterval(() => {
+      setSimulationProgress((prev) => {
+        if (prev + increment >= 100) {
+          clearInterval(interval); // Detener la simulación
+          setIsSimulating(false);
+          return 100;
+        }
+        return prev + increment;
+      });
+    }, intervalDuration);
+  };
+
   const handleContratar = async () => {
-    if (!fechaSalida) {
-      alert("Por favor selecciona una fecha de salida válida.");
-      return;
-    }
-    if (!origen || !destino) {
-      alert("Por favor ingresa un origen y un destino válidos.");
+    if (!fechaSalida || !origen || !destino) {
+      alert("Por favor completa todos los campos.");
       return;
     }
 
@@ -100,6 +114,7 @@ export default function ServicesComponent(): JSX.Element {
       if (origenCoords && destinoCoords) {
         setCoordinates({ origen: origenCoords, destino: destinoCoords });
         await fetchRoute(origenCoords, destinoCoords);
+        startSimulation(); // Iniciar la simulación
       } else {
         alert("No se pudieron encontrar las coordenadas de origen o destino.");
       }
@@ -130,7 +145,7 @@ export default function ServicesComponent(): JSX.Element {
             <input
               type="date"
               value={fechaSalida}
-              min={getTodayDate()} // Restringe a fechas actuales o futuras
+              min={getTodayDate()}
               onChange={handleFechaChange}
               className="input-field"
             />
@@ -142,7 +157,7 @@ export default function ServicesComponent(): JSX.Element {
               type="text"
               value={origen}
               onChange={(e) => setOrigen(e.target.value)}
-              placeholder="Ejemplo: Barquisimeto, n° de calle"
+              placeholder="Ej: Barquisimeto,Calle 10"
               className="input-field"
             />
           </div>
@@ -152,7 +167,7 @@ export default function ServicesComponent(): JSX.Element {
               type="text"
               value={destino}
               onChange={(e) => setDestino(e.target.value)}
-              placeholder="Ejemplo: San Juan, n° de calle"
+              placeholder="Ej: Cabudare,Calle 20"
               className="input-field"
             />
           </div>
@@ -164,6 +179,14 @@ export default function ServicesComponent(): JSX.Element {
           <Map coordinates={coordinates} route={route} />
         </div>
       </div>
+
+      {isSimulating && (
+        <div className="simulation-container">
+          <p>Envio en curso... {Math.round(simulationProgress)}%</p>
+          <progress value={simulationProgress} max="100"></progress>
+          <p>Tiempo estimado: {travelTime && `${Math.floor(travelTime / 60000)} min`}</p>
+        </div>
+      )}
     </div>
   );
 }

@@ -24,6 +24,7 @@
     grid-template-columns: 1fr 2fr 1fr;
     align-items: center;
     border-bottom: 1px solid #ddd;
+    position: relative; /* Para posicionar el botón hamburguesa */
 }
 
 .options {
@@ -75,4 +76,60 @@
 .div-buttons a:first-child {
     background-color: #fff;
     color: #000;
+}
+
+/* Estilos para el botón hamburguesa */
+.burger-button {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: #000;
+    cursor: pointer;
+}
+
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 768px) {
+    .navbar {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .options {
+        display: none; /* Ocultar el menú por defecto en pantallas pequeñas */
+        flex-direction: column;
+        gap: 20px;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background-color: #fff;
+        padding: 20px;
+    }
+
+    .navbar.open .options {
+        display: flex; /* Mostrar el menú cuando esté abierto */
+    }
+
+    .burger-button {
+        display: block; /* Mostrar el botón hamburguesa solo en pantallas pequeñas */
+        position: absolute;
+        right: 20px;
+        top: 20px;
+    }
+
+    .div-buttons {
+        position: absolute;
+        right: 20px;
+        top: 80px; /* Ajustar la posición de los botones en dispositivos móviles */
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-end; /* Alinear los botones a la derecha */
+    }
+
+    .div-buttons a {
+        font-size: 18px; /* Ajustar el tamaño de fuente para que se vea bien en móviles */
+        padding: 10px;
+        border-radius: 8px;
+    }
 }
