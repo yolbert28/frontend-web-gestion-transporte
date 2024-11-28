@@ -12,9 +12,9 @@ type Service = {
 const Services: React.FC = () => {
   // Lista de servicios (ejemplo estático)
   const services: Service[] = [
-    { id: 1, title: 'Carga ligera', description: '100-1000 kilogramos', category: 'Transporte de mercancía' },
-    { id: 2, title: 'Carga ligera', description: '100-1000 kilogramos', category: 'Transporte de mercancía' },
-    { id: 3, title: 'Carga ligera', description: '100-1000 kilogramos', category: 'Transporte de mercancía' },
+    { id: 1, title: 'Envio de Paquetes', description: '100-1000 kilogramos', category: 'Transporte de mercancía' },
+    { id: 2, title: 'Cava refrigerada', description: '100-1000 kilogramos', category: 'Transporte de mercancía' },
+    { id: 3, title: 'Carga pesada', description: '100-1000 kilogramos', category: 'Transporte de mercancía' },
     { id: 4, title: 'Encava', description: '30 personas max', category: 'Transporte de personas' },
     { id: 5, title: 'Rapidito', description: '4 personas max', category: 'Transporte de personas' },
     { id: 6, title: 'Mototaxi', description: '1 persona max', category: 'Transporte de personas' },
