@@ -1,12 +1,12 @@
+import { useState } from "react";
 import { Outlet, Link } from "react-router-dom";
-import { useState } from "react"; // Importar useState para manejar la visibilidad del menú
 import "./NavBar.css";
 
 export default function NavBar(): JSX.Element {
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para controlar el menú en pantallas pequeñas
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
-    setIsMenuOpen(prevState => !prevState); // Alternar la visibilidad del menú
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
@@ -17,7 +17,7 @@ export default function NavBar(): JSX.Element {
           <div className="logo">
             <Link to="/">SafeRoute</Link>
           </div>
-          <nav className={`bar ${isMenuOpen ? "open" : ""}`}> {/* Condicional para mostrar u ocultar el menú */}
+          <nav className={`bar ${isMenuOpen ? "open" : ""}`}>
             <ul className="options">
               <li>
                 <Link className="option" to="/">Inicio</Link>
@@ -34,8 +34,9 @@ export default function NavBar(): JSX.Element {
             <Link to="/login">Iniciar Sesión</Link>
             <Link to="/register">Registrar</Link>
           </div>
+          {/* Botón Hamburguesa */}
           <button className="burger-button" onClick={toggleMenu}>
-            &#9776; {/* Símbolo del botón de menú hamburguesa */}
+            ☰
           </button>
         </div>
         <div className="pages">
