@@ -8,7 +8,8 @@ import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Services from './pages/Services/Services'
 import ServicesComponent from './components/ServicesComponent/ServicesComponent';
-import Driver from './pages/driver/driver'
+import Tracking from './pages/Tracking/Tracking';
+import Driver from './pages/Driver/Driver';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
         {
           path: '/driver',
           element: <Driver/>
+        },
+        {
+          path: '/tracking',
+          element: <Tracking/>
         }
        
       ]
