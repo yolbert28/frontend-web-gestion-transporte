@@ -1,63 +1,126 @@
 /* Contenedor general */
+body, html {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f7fa; /* Fondo más claro */
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Contenedor principal */
 .Tracking-container {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    background-color: #6e6e6e;
-  }
-  
-  /* Sección de búsqueda */
-  .search-section {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .label {
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
-  .input-field {
-    flex: 1;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
-  }
-  
-  .search-button {
-    padding: 8px 16px;
-    background-color: #000;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  
-  /* Tabla de Tracking */
-  .tracking-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-  }
-  
-  .tracking-table th,
-  .tracking-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
-  }
-  
-  .tracking-table th {
-    background-color: #f5f5f5;
-    font-weight: bold;
-  }
-  
-  .tracking-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #fff;  /* Fondo blanco para resaltar el contenido */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  width: 95%;
+  padding: 20px;
+}
+
+/* Sección de búsqueda */
+.search-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+/* Estilo del label */
+.label {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  color: #444;
+  text-align: left;
+  margin-bottom: 0.5rem;
+  padding-right: 10px;
+}
+
+/* Estilo del campo de entrada */
+.input-field {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fafafa;
+  box-sizing: border-box;
+  transition: all 0.3s ease;  /* Transición suave */
+}
+
+/* Estilo del campo de entrada en foco */
+.input-field:focus {
+  border-color: #4a90e2; /* Bordes azul cuando está en foco */
+  background-color: #fff; /* Fondo blanco cuando está en foco */
+  outline: none; /* Quitar el borde por defecto */
+}
+
+/* Botón de búsqueda */
+.search-button {
+  padding: 10px 20px;
+  background-color: #000000;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;  /* Transición suave */
+}
+
+/* Botón de búsqueda al pasar el ratón */
+.search-button:hover {
+  background-color: #357ab7; /* Color más oscuro al pasar el ratón */
+}
+
+/* Tabla de Tracking */
+.tracking-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.tracking-table th,
+.tracking-table td {
+  padding: 12px;
+  text-align: left;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.tracking-table th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+  color: #555;
+}
+
+.tracking-table tr:nth-child(even) {
+  background-color: #fafafa; /* Fondo gris claro para filas pares */
+}
+
+.tracking-table tr:hover {
+  background-color: #f1f1f1; /* Color de fondo al pasar el ratón por encima */
+}
+
+.tracking-table td {
+  color: #333;
+}
+
+.tracking-table td, .tracking-table th {
+  transition: background-color 0.3s ease;  /* Transición suave para las celdas */
+}
+
+/* Agregar bordes redondeados a la tabla */
+.tracking-table td, .tracking-table th {
+  border-radius: 6px;
+}
+

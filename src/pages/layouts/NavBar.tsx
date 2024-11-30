@@ -31,9 +31,6 @@ export default function NavBar(): JSX.Element {
               <li> 
                 <Link className="option" to="/tracking">Seguimiento</Link>
               </li>
-              <li>
-                <Link className="option" to="/about">Sobre Nosotros</Link>
-              </li>
             </ul>
           </nav>
           <div className="div-buttons">

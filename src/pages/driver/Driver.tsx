@@ -1,6 +1,6 @@
 import React from 'react';
 import './Driver.css';
-
+import Map from '../../components/Map';
 const Driver: React.FC = () => {
   return (
     <div className="container">
@@ -8,11 +8,12 @@ const Driver: React.FC = () => {
       <section className="travel-section">
         <h2>Viaje</h2>
         <h3 className="status">En Curso</h3>
-        <img
-          src=""
-          alt="Viaje en progreso"
-          className="travel-image"
-        />
+      <div className='map-container'>
+        <Map coordinates={{
+            origen: null,
+            destino: null
+          }} route={null}/>
+      </div>
         <table className="travel-table">
           <thead>
             <tr>
@@ -35,11 +36,10 @@ const Driver: React.FC = () => {
       <section className="route-section">
         <h2>Ruta Detalle</h2>
         <div className="map-container">
-          <img
-            src=""
-            alt="Mapa"
-            className="map-image"
-          />
+          <Map coordinates={{
+            origen: null,
+            destino: null
+          }} route={null}/>
         </div>
         <form className="route-form">
           <div className="form-group">
