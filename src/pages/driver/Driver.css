@@ -1,99 +1,35 @@
-/* Contenedor general */
-.container {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  /* Sección de viaje */
-  .travel-section {
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 8px;
-  }
-  
-  .travel-section h2 {
-    margin-bottom: 10px;
-  }
-  
-  .status {
-    color: #FF6347;
-    margin-bottom: 10px;
-  }
-  
-  .travel-image {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 10px;
-  }
-  
-  .travel-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .travel-table th,
-  .travel-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
-  }
-  
-  /* Sección Ruta Detalle */
-  .route-section {
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 8px;
-  }
-  
-  .route-section h2 {
-    margin-bottom: 10px;
-  }
-  
-  .map-container {
-    text-align: center;
-    margin-bottom: 10px;
-  }
-  
-  .map-image {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-  }
-  
-  .route-form .form-group {
-    margin-bottom: 10px;
-  }
-  
-  .input-field {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  /* Sección de Incidencias */
-  .incident-section {
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 8px;
-  }
-  
-  .incident-form .form-group {
-    margin-bottom: 10px;
-  }
-  
-  .submit-button {
-    background-color: #000;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  
+/* Sección de viaje */
+.travel-section {
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra el contenido */
+}
+
+.travel-image {
+  width: 80%; /* Reduce el ancho al 80% del contenedor */
+  max-width: 300px; /* Máximo ancho fijo */
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Sección Ruta Detalle */
+.route-section {
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra el contenido */
+}
+
+.map-image {
+  width: 80%; /* Reduce el ancho al 80% del contenedor */
+  max-width: 300px; /* Máximo ancho fijo */
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
