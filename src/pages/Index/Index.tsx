@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Index.css";
+import Footer from "../../components/Footer";
 
 export default function Index(): JSX.Element {
   const images = [
@@ -41,6 +42,7 @@ export default function Index(): JSX.Element {
           <img src="../../../public/imagen1.jpg" alt="camino" className="info-image-img" />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

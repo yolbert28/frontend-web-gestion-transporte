@@ -19,7 +19,11 @@ export default function ServicesComponent(): JSX.Element {
   const [simulationProgress, setSimulationProgress] = useState<number>(0); // Porcentaje de progreso
   const [isSimulating, setIsSimulating] = useState(false); // Indica si la simulación está en curso
   const [loading, setLoading] = useState(false);
-
+ 
+  const [metodoPago, setMetodoPago] = useState("");
+  const [monto, setMonto] = useState(""); 
+  const [montoError, setMontoError] = useState("");
+  const [montoFormateado, setMontoFormateado] = useState("");
   const getTodayDate = () => {
     const today = new Date();
     const year = today.getFullYear();
@@ -100,7 +104,7 @@ export default function ServicesComponent(): JSX.Element {
   };
 
   const handleContratar = async () => {
-    if (!fechaSalida || !origen || !destino) {
+    if (!fechaSalida || !origen || !destino || !metodoPago || !monto) {
       alert("Por favor completa todos los campos.");
       return;
     }
@@ -115,6 +119,8 @@ export default function ServicesComponent(): JSX.Element {
         setCoordinates({ origen: origenCoords, destino: destinoCoords });
         await fetchRoute(origenCoords, destinoCoords);
         startSimulation(); // Iniciar la simulación
+        console.log("Método de Pago seleccionado:", metodoPago);
+        console.log("Monto a Pagar:", monto);
       } else {
         alert("No se pudieron encontrar las coordenadas de origen o destino.");
       }
@@ -171,6 +177,42 @@ export default function ServicesComponent(): JSX.Element {
               className="input-field"
             />
           </div>
+          <div className="form-group">
+               <label>Método de Pago</label>
+                <select
+                   value={metodoPago}
+                    onChange={(e) => setMetodoPago(e.target.value)}
+                    className="input-field"
+                     >
+                   <option value="">Selecciona un método de pago</option>
+                    <option value="tarjeta">Tarjeta de Crédito/Débito</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="transferencia">Transferencia Bancaria</option>
+                  </select>
+                </div>
+                <div className="form-group">
+                    <label>Monto a Pagar</label>
+                    <input
+                      type="number"
+                      value={monto}
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        if (value < 0) {
+                          setMontoError("El monto no puede ser negativo.");
+                          setMonto("");
+                          setMontoFormateado("");
+                        } else {
+                          setMontoError("");
+                          setMonto(value);
+                          setMontoFormateado(`$${value}`);
+                        }
+                      }}
+                      placeholder="Ej. $100"
+                      className="input-field"
+                    />
+                    {montoError && <p className="error-text">{montoError}</p>}
+                  </div>
+
           <button className="btn-contratar" onClick={handleContratar} disabled={loading}>
             {loading ? "Cargando..." : "Contratar"}
           </button>
