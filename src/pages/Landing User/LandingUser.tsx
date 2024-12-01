@@ -1,12 +1,16 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { AuthServices } from '../Services/authServices'; // Ajusta la ruta de importación según sea necesario
+import { useAuth } from '../Services/useAuth'; // Ajusta la ruta de importación según sea necesario
 import './LandingUser.css';
-
+import { useNavigate } from 'react-router-dom';
 const LandingUser: React.FC = () => {
-  // Obtener el usuario del contexto
-  const { user } = useContext(AuthServices);
+  const { user, logout } = useAuth();
+  const navigate = useNavigate(); // Hook para la redirección
 
+  const handleLogout = () => {
+    logout();
+    navigate('/login'); // Redirige al login después de cerrar sesión
+  };
   if (!user) {
     return <div>No se encontró el usuario.</div>; // Maneja el caso en que no haya un usuario
   }
@@ -26,6 +30,9 @@ const LandingUser: React.FC = () => {
           <Link to="/request-service" className="request-button">
             Pedir Servicio
           </Link>
+        </section>
+        <section>
+          <button onClick={handleLogout}>Cerrar sesión</button>
         </section>
       </main>
 

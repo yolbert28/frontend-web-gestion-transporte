@@ -1,13 +1,14 @@
 import React from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
-
+import { Navigate} from 'react-router-dom';
+import { useAuth } from '../pages/Services/useAuth'; 
 interface ProtectedRouteProps {
   isAuthenticated: boolean;
   children: React.ReactNode; // Los componentes hijos que serán renderizados si el usuario está autenticado
 }
 
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ isAuthenticated, children }) => {
-  const location = useLocation(); // Para mantener la ubicación actual al redirigir
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
+  const { isAuthenticated } = useAuth();
+  // Para mantener la ubicación actual al redirigir
 
   if (!isAuthenticated) {
     // Si no está autenticado, redirige a la página de login

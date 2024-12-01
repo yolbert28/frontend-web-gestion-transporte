@@ -11,7 +11,7 @@ import Tracking from './pages/Tracking/Tracking';
 import Driver from './pages/Driver/Driver';
 import LandingUser from './pages/Landing User/LandingUser';
 import ProtectedRoute from './components/ProtectedRoute';
-import { AuthServices } from './pages/Services/authServices';
+import { AuthProvider} from './pages/Services/AuthServices';
 
 const router = createBrowserRouter([
   {
@@ -41,8 +41,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <AuthServices.Provider value={{ isAuthenticated: true, user: { name: 'John Doe' } }}>
+    {/* Utiliza el AuthProvider para manejar el estado de autenticación */}
+    <AuthProvider>
       <RouterProvider router={router} />
-    </AuthServices.Provider>
+    </AuthProvider>
   </React.StrictMode>
 );
