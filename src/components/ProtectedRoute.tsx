@@ -1,26 +1,21 @@
-// src/components/ProtectedRoute.tsx
-
 import React from 'react';
-import { Navigate } from 'react-router-dom';
-import { getUserRole } from '../pages/Services/authServices';
+import { Navigate, useLocation } from 'react-router-dom';
 
 interface ProtectedRouteProps {
-    allowedRoles: string[];  // Roles que pueden acceder
-    children: React.ReactNode;  // Componente a renderizar
+  isAuthenticated: boolean;
+  children: React.ReactNode; // Los componentes hijos que serán renderizados si el usuario está autenticado
 }
 
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ allowedRoles, children }) => {
-    const role = getUserRole(); // Obtén el rol del usuario desde el token
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ isAuthenticated, children }) => {
+  const location = useLocation(); // Para mantener la ubicación actual al redirigir
 
-    if (!role) {
-        return <Navigate to="/login" />;  // Redirige a login si no hay rol
-    }
+  if (!isAuthenticated) {
+    // Si no está autenticado, redirige a la página de login
+    return <Navigate to="/login" state={{ from: location }} />;
+  }
 
-    if (!allowedRoles.includes(role)) {
-        return <Navigate to="/not-authorized" />;  // Redirige si el rol no tiene acceso
-    }
-
-    return <>{children}</>;  // Renderiza el componente si tiene el rol permitido
+  // Si está autenticado, renderiza los componentes hijos
+  return <>{children}</>;
 };
 
 export default ProtectedRoute;
