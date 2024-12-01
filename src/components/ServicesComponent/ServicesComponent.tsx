@@ -19,6 +19,8 @@ export default function ServicesComponent(): JSX.Element {
   const [simulationProgress, setSimulationProgress] = useState<number>(0); // Porcentaje de progreso
   const [isSimulating, setIsSimulating] = useState(false); // Indica si la simulación está en curso
   const [loading, setLoading] = useState(false);
+ 
+  const [metodoPago, setMetodoPago] = useState("");
 
   const getTodayDate = () => {
     const today = new Date();
@@ -100,7 +102,7 @@ export default function ServicesComponent(): JSX.Element {
   };
 
   const handleContratar = async () => {
-    if (!fechaSalida || !origen || !destino) {
+    if (!fechaSalida || !origen || !destino || !metodoPago ) {
       alert("Por favor completa todos los campos.");
       return;
     }
@@ -115,6 +117,7 @@ export default function ServicesComponent(): JSX.Element {
         setCoordinates({ origen: origenCoords, destino: destinoCoords });
         await fetchRoute(origenCoords, destinoCoords);
         startSimulation(); // Iniciar la simulación
+        
       } else {
         alert("No se pudieron encontrar las coordenadas de origen o destino.");
       }
@@ -171,6 +174,21 @@ export default function ServicesComponent(): JSX.Element {
               className="input-field"
             />
           </div>
+          <div className="form-group">
+               <label>Método de Pago</label>
+                <select
+                   value={metodoPago}
+                    onChange={(e) => setMetodoPago(e.target.value)}
+                    className="input-field"
+                     >
+                   <option value="">Selecciona un método de pago</option>
+                    <option value="tarjeta">Tarjeta de Crédito/Débito</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="transferencia">Transferencia Bancaria</option>
+                  </select>
+                </div>
+                
+
           <button className="btn-contratar" onClick={handleContratar} disabled={loading}>
             {loading ? "Cargando..." : "Contratar"}
           </button>

@@ -27,7 +27,7 @@ const Register: React.FC = () => {
     }
   
     // Enviar los datos al backend de node
-    fetch('http://localhost:3000/register', {
+    fetch('http://localhost:3000/api/auth/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

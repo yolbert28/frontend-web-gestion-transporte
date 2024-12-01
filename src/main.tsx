@@ -1,43 +1,49 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import NavBar from './pages/layouts/NavBar'
-import Index from './pages/Index/Index'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import NavBar from './pages/layouts/NavBar';
+import Index from './pages/Index/Index';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
-import Services from './pages/Services/Services'
+import Services from './pages/Services/Services';
 import ServicesComponent from './components/ServicesComponent/ServicesComponent';
-import Map from "./components/Map";
+import Tracking from './pages/Tracking/Tracking';
+import Driver from './pages/Driver/Driver';
+import LandingUser from './pages/Landing User/LandingUser';
+import ProtectedRoute from './components/ProtectedRoute';
+import { AuthProvider} from './pages/Services/AuthServices';
+
 const router = createBrowserRouter([
   {
     path: '/',
     element: <NavBar />,
-    // errorElement: <ErrorPage />,
     children: [
+      { path: '/', element: <Index /> },
+      { path: '/login', element: <Login /> },
+      { path: '/register', element: <Register /> },
+      { path: '/services', element: <Services /> },
+      { path: '/service-component', element: <ServicesComponent /> },
+      { path: '/driver', element: <Driver /> },
+      { path: '/tracking', element: <Tracking /> },
+
+      // Ruta protegida para el landing del usuario
       {
-        path: '/',
-        element: <Index />
+        path: '/landing-user',
+        element: (
+          <ProtectedRoute isAuthenticated={true}>
+            <LandingUser />
+          </ProtectedRoute>
+        ),
       },
-      {
-        path: '/login',
-        element: <Login />
-      },
-      {
-        path: '/register',
-        element: <Register />
-      },
-      { path: '/services', 
-        element: <Services /> },
-      { path: '/service-component',
-        element: <ServicesComponent />},
-       
-      ]
-  }
-])
+    ],
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    {/* Utiliza el AuthProvider para manejar el estado de autenticación */}
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
-)
+);

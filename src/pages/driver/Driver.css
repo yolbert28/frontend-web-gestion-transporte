@@ -1,0 +1,129 @@
+/* Contenedor principal */
+.container {
+  max-width: 1200px; /* Limita el ancho máximo */
+  margin: 0 auto; /* Centra el contenedor */
+  padding: 20px;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+/* Sección Viaje */
+.travel-section {
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra el contenido */
+  gap: 20px;
+  background-color: #fff;
+  width: 100%;
+  max-width: 600px; /* Establece un ancho máximo */
+  margin-bottom: 20px; /* Separación entre secciones */
+}
+
+.travel-image {
+  width: 100%; /* Ocupa todo el ancho disponible */
+  max-width: 300px; /* Limita el tamaño de la imagen */
+  height: auto; /* Mantiene la proporción de la imagen */
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.travel-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.travel-table th,
+.travel-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.travel-table th {
+  background-color: #f5f5f5;
+}
+
+/* Sección Ruta Detalle */
+.route-section {
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
+}
+
+.map-image {
+  width: 100%; /* Ocupa el 100% del contenedor */
+  max-width: 300px; /* Limita el tamaño máximo de la imagen */
+  height: auto;
+  border-radius: 8px;
+}
+
+.route-form {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-field {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.submit-button {
+  padding: 10px 20px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #444;
+}
+
+/* Sección Reportar Incidencia */
+.incident-section {
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.incident-form {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.incident-form .form-group {
+  display: flex;
+  flex-direction: column;
+}
