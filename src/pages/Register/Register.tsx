@@ -1,6 +1,7 @@
-
 import React, { useState } from 'react';
-import './Register.css'
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate
+import './Register.css';
+
 const Register: React.FC = () => {
   const [formData, setFormData] = useState({
     documento: '',
@@ -11,6 +12,8 @@ const Register: React.FC = () => {
     password: '',
     confirmPassword: '',
   });
+  
+  const navigate = useNavigate(); // Hook para navegación
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -33,7 +36,7 @@ const Register: React.FC = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-       documento: formData.documento,
+        documento: formData.documento,
         nombre: formData.nombre,
         apellido: formData.apellido,
         telefono: formData.telefono,
@@ -48,6 +51,7 @@ const Register: React.FC = () => {
           alert('Error: ' + JSON.stringify(data.errors));
         } else {
           alert('Usuario registrado exitosamente');
+          navigate('/login'); // Redirigir al login después de un registro exitoso
         }
       })
       .catch(error => {
@@ -55,96 +59,97 @@ const Register: React.FC = () => {
         alert('Error al registrar usuario');
       });
   };
-  
 
   return (
-   <div className='main-container'>
-    <div className='register-container'>
-      <h2>Registro</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Id de Identidad:</label>
-          <input
-          placeholder='Ejemplo: 12345678'
-            type="text"
-            name="documento"
-            value={formData.documento}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Nombre:</label>
-          <input
-            placeholder='Ejemplo: Juan'
-            type="text"
-            name="nombre"
-            value={formData.nombre}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Apellido:</label>
-          <input
-            placeholder='Ejemplo: Perez'
-            type="text"
-            name="apellido"
-            value={formData.apellido}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Teléfono:</label>
-          <input
-            placeholder='Ejemplo: +58 987654321'
-            type="tel"
-            name="telefono"
-            value={formData.telefono}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Correo:</label>
-          <input
-            placeholder='Ejemplo: juanperez@gmail.com'
-            type="email"
-            name="correo"
-            value={formData.correo}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label >Contraseña:</label>
-          <input type="password"
-          name='password'
-          value={formData.password}
-          onChange={handleChange}
-          required
-          />
-        </div>
-        <div>
-          <label> Confirmar Contraseña:</label>
-          <input type="password"
-          name='confirmPassword'
-          value={formData.confirmPassword}
-          onChange={handleChange}
-          required
-          />  
-        </div>
-        <button type="submit">Registrar</button>
-        <div className='already-account'>
-         <a> ¿Ya tienes una cuenta?</a>
-        </div>
-        <div className='login'>
-          <a href=""> Iniciar Sesion</a>
-        </div>
-      </form>
-    </div>
-  </div>  
+    <div className='main-container'>
+      <div className='register-container'>
+        <h2>Registro</h2>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Id de Identidad:</label>
+            <input
+              placeholder='Ejemplo: 12345678'
+              type="text"
+              name="documento"
+              value={formData.documento}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <label>Nombre:</label>
+            <input
+              placeholder='Ejemplo: Juan'
+              type="text"
+              name="nombre"
+              value={formData.nombre}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <label>Apellido:</label>
+            <input
+              placeholder='Ejemplo: Perez'
+              type="text"
+              name="apellido"
+              value={formData.apellido}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <label>Teléfono:</label>
+            <input
+              placeholder='Ejemplo: +58 987654321'
+              type="tel"
+              name="telefono"
+              value={formData.telefono}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <label>Correo:</label>
+            <input
+              placeholder='Ejemplo: juanperez@gmail.com'
+              type="email"
+              name="correo"
+              value={formData.correo}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <label>Contraseña:</label>
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <label>Confirmar Contraseña:</label>
+            <input
+              type="password"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              required
+            />  
+          </div>
+          <button type="submit">Registrar</button>
+          <div className='already-account'>
+            <a> ¿Ya tienes una cuenta?</a>
+          </div>
+          <div className='login'>
+            <a href="/login">Iniciar Sesión</a>
+          </div>
+        </form>
+      </div>
+    </div>  
   );
 };
 

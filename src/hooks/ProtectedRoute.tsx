@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { getUserRole } from '../pages/Services/authServices';
+import { getUserRole } from './authServices';
 
 interface ProtectedRouteProps {
     allowedRoles: string[];  // Roles que pueden acceder

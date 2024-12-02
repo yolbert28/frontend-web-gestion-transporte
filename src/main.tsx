@@ -9,7 +9,7 @@ import Register from './pages/Register/Register';
 import Services from './pages/Services/Services'
 import ServicesComponent from './components/ServicesComponent/ServicesComponent';
 import Tracking from './pages/Tracking/Tracking';
-import Driver from './pages/Driver/Driver';
+import Driver from './pages/driver/Driver';
 const router = createBrowserRouter([
   {
     path: '/',
