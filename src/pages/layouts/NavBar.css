@@ -1,135 +1,168 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 .body {
-    font-family: "Roboto";
-    background-color: #aaa;
+  font-family: "Roboto";
+  background-color: #aaa;
 }
 
 .spacer {
-    width: 100vw;
-    height: 2vh;
-    background-color: #000;
+  width: 100vw;
+  height: 2vh;
+  background-color: #000;
 }
 
 .content {
-    width: 100vw;
-    height: 98vh;
-    display: grid;
-    grid-template-rows: 70px 89vh;
+  width: 100vw;
+  height: 98vh;
+  display: grid;
+  grid-template-rows: 70px 89vh;
 }
 
 .navbar {
-    background-color: #fff;
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    align-items: center;
-    border-bottom: 1px solid #ddd;
-    position: relative; /* Para posicionar el botón hamburguesa */
+  background-color: #fff;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  position: relative;
 }
 
 .options {
-    list-style-type: none;
-    display: flex;
-    flex-direction: row;
-    gap: 60px;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  gap: 60px;
 }
 
 .logo {
-    width: 190px;
-    margin: 0 0 0 50px;
+  width: 190px;
+  margin: 0 0 0 50px;
 }
 
 .logo a {
-    font-size: 40px;
-    font-weight: 700;
-    color: #000;
-    text-decoration: none;
+  font-size: 40px;
+  font-weight: 700;
+  color: #000;
+  text-decoration: none;
 }
 
 .option {
-    font-size: 22px;
-    font-weight: 600;
-    color: #000;
-    text-decoration: none;
+  font-size: 22px;
+  font-weight: 600;
+  color: #000;
+  text-decoration: none;
 }
 
 .div-buttons {
-    position: absolute;
-    display: flex;
-    gap: 20px;
-    right: 20px;
+  position: absolute;
+  display: flex;
+  gap: 20px;
+  right: 20px;
 }
 
-.div-buttons a {
-    text-decoration: none;
-    background-color: #000;
-    color: #fff;
-    font-size: 20px;
-    font-weight: 600;
-    border-radius: 5px;
-    padding: 8px;
-    border-style: solid;
-    border-width: 3px;
-    border-color: #000;
+.div-buttons a, .logout {
+  text-decoration: none;
+  background-color: #000;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 5px;
+  padding: 8px;
+  border-style: solid;
+  border-width: 3px;
+  border-color: #000;
 }
 
 .div-buttons a:first-child {
-    background-color: #fff;
-    color: #000;
+  background-color: #fff;
+  color: #000;
+}
+
+/* Cerrar sesión */
+.logout {
+  background-color: #f44336; /* Rojo */
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.logout:hover {
+  background-color: #e53935; /* Rojo más oscuro */
+}
+
+.user {
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
 }
 
 /* Estilos para el botón hamburguesa */
 .burger-button {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 30px;
-    color: #000;
-    cursor: pointer;
+  display: none;
+  background: none;
+  border: none;
+  font-size: 30px;
+  color: #000;
+  cursor: pointer;
 }
 
 /* Responsividad para pantallas pequeñas */
 @media (max-width: 768px) {
-    .navbar {
-        grid-template-columns: 1fr 1fr;
-    }
+  .navbar {
+    grid-template-columns: 1fr 1fr;
+  }
 
-    .options {
-        display: none; /* Ocultar el menú por defecto en pantallas pequeñas */
-        flex-direction: column;
-        gap: 20px;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        right: 0;
-        background-color: #fff;
-        padding: 20px;
-    }
+  .options {
+    display: none; /* Ocultar el menú por defecto en pantallas pequeñas */
+    flex-direction: column;
+    gap: 20px;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    padding: 20px;
+  }
 
-    .navbar.open .options {
-        display: flex; /* Mostrar el menú cuando esté abierto */
-    }
+  .navbar.open .options {
+    display: flex; /* Mostrar el menú cuando esté abierto */
+  }
 
-    .burger-button {
-        display: block; /* Mostrar el botón hamburguesa solo en pantallas pequeñas */
-        position: absolute;
-        right: 20px;
-        top: 20px;
-    }
+  .burger-button {
+    display: block; /* Mostrar el botón hamburguesa solo en pantallas pequeñas */
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
 
-    .div-buttons {
-        position: absolute;
-        right: 20px;
-        top: 80px; /* Ajustar la posición de los botones en dispositivos móviles */
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        align-items: flex-end; /* Alinear los botones a la derecha */
-    }
+  .div-buttons {
+    position: absolute;
+    right: 20px;
+    top: 80px; /* Ajustar la posición de los botones en dispositivos móviles */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end; /* Alinear los botones a la derecha */
+  }
 
-    .div-buttons a {
-        font-size: 18px; /* Ajustar el tamaño de fuente para que se vea bien en móviles */
-        padding: 10px;
-        border-radius: 8px;
-    }
+  .div-buttons a {
+    font-size: 18px; /* Ajustar el tamaño de fuente para que se vea bien en móviles */
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  .logout {
+    font-size: 16px;
+    padding: 8px 15px;
+  }
+
+  .user {
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
 }

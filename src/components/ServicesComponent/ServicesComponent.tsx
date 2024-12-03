@@ -6,11 +6,12 @@ import axios from "axios";
 const GRAPH_HOPPER_API_KEY = "55c799bd-36f6-4fd7-873f-b6d0902f2570";
 
 export default function ServicesComponent(): JSX.Element {
-  const [descripcion, setDescripcion] = useState("");
+  const [clienteDocumento, setclienteDocumento] = useState("");
   const [fechaSalida, setFechaSalida] = useState("");
   const [origen, setOrigen] = useState("");
   const [destino, setDestino] = useState("");
   const [fechaError, setFechaError] = useState("");
+  const [tiposTransportesId, setTiposTransportesId] = useState<number | string>(""); 
   const [coordinates, setCoordinates] = useState<{ origen: [number, number] | null; destino: [number, number] | null }>(
     { origen: null, destino: null }
   );
@@ -102,7 +103,7 @@ export default function ServicesComponent(): JSX.Element {
   };
 
   const handleContratar = async () => {
-    if (!fechaSalida || !origen || !destino || !metodoPago ) {
+    if (!clienteDocumento ||!fechaSalida || !origen || !destino || !metodoPago ) {
       alert("Por favor completa todos los campos.");
       return;
     }
@@ -134,12 +135,12 @@ export default function ServicesComponent(): JSX.Element {
         <div className="carga-ligera-container">
           <h2 className="carga-ligera-title">Registro de Servicio</h2>
           <div className="form-group">
-            <label>Descripción de la carga</label>
+            <label>Inserte su N° de Identificación</label>
             <input
               type="text"
-              value={descripcion}
-              onChange={(e) => setDescripcion(e.target.value)}
-              placeholder="Ej. Documentos, paquete..."
+              value={clienteDocumento}
+              onChange={(e) => setclienteDocumento(e.target.value)}
+              placeholder="Ej: 123456789"
               className="input-field"
             />
           </div>
@@ -173,6 +174,19 @@ export default function ServicesComponent(): JSX.Element {
               placeholder="Ej: Cabudare,Calle 20"
               className="input-field"
             />
+          </div>
+          <div className="form-group">
+            <label>Tipo de Transporte</label>
+            <select
+              value={tiposTransportesId}
+              onChange={(e) => setTiposTransportesId(e.target.value)}
+              className="input-field"
+            >
+              <option value="">Selecciona el tipo de transporte</option>
+              <option value="1">Transporte Ligero</option>
+              <option value="2">Transporte Pesado</option>
+              {/* Agrega más opciones según los tipos de transporte que tengas */}
+            </select>
           </div>
           <div className="form-group">
                <label>Método de Pago</label>

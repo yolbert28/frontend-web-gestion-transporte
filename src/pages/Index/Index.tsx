@@ -4,9 +4,9 @@ import Footer from "../../components/Footer";
 
 export default function Index(): JSX.Element {
   const images = [
-    "../../../public/pic-3.jpg",
-    "../../../public/imagen1.jpg",
-    "../../../public/Transportes.jpg",
+    "/pic-3.jpg",
+    "/imagen1.jpg",
+    "/Transportes.jpg",
   ];
 
   return (
@@ -19,7 +19,7 @@ export default function Index(): JSX.Element {
       <div className="white-spacer"></div>
       <div className="info">
         <div className="info-image">
-          <img src="../../../public/Transportes.jpg" alt="camino" className="info-image-img" />
+          <img src="/Transportes.jpg" alt="camino" className="info-image-img" />
         </div>
         <div className="info-text">
           <h3 className="info-text-title">Transporte y Logística Segura</h3>
@@ -39,10 +39,12 @@ export default function Index(): JSX.Element {
           </p>
         </div>
         <div className="info-image">
-          <img src="../../../public/imagen1.jpg" alt="camino" className="info-image-img" />
+          <img src="/imagen1.jpg" alt="camino" className="info-image-img" />
         </div>
       </div>
-      <Footer />
+      <div className="footer-container">
+        <Footer /> 
+      </div>
     </div>
   );
 }

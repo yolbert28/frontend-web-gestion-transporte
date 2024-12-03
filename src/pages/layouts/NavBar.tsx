@@ -48,19 +48,14 @@ export default function NavBar(): JSX.Element {
                   <Link className="option" to="/services">Servicios</Link>
                 </li>
               )}
-              <li>
-                <Link className="option" to="/driver">Chofer</Link>
-              </li>
-              <li> 
-                <Link className="option" to="/tracking">Seguimiento</Link>
-              </li>
+              
             </ul>
           </nav>
           <div className="div-buttons">
             {isLoggedIn ? (
               <>
-                <span>Hola, {nombre}</span> {/* Mostrar nombre del usuario */}
-                <button onClick={logoutUser}>Cerrar sesión</button>
+                <span className="user">Bienvenido{nombre}</span> {/* Mostrar nombre del usuario */}
+                <button  className="logout"onClick={logoutUser}>Cerrar sesión</button>
               </>
             ) : (
               <>
