@@ -121,6 +121,35 @@ label {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   animation: fade-in 0.5s ease-in-out;
 }
+/* Estilos para el botón de "Cancelar Viaje" */
+.cancel-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.btn-cancel {
+  background-color: #e74c3c;  /* Rojo para indicar cancelación */
+  color: #fff;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-cancel:hover {
+  background-color: #c0392b;  /* Rojo más oscuro al hacer hover */
+  transform: translateY(-2px); /* Efecto de elevación */
+}
+
+.btn-cancel:active {
+  background-color: #e74c3c;  /* Mantener el color rojo al presionar */
+  transform: translateY(1px);  /* Efecto de presión */
+}
 
 /* Media Queries para responsividad */
 @media (max-width: 768px) {

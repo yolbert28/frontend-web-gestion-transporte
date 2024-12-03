@@ -10,6 +10,7 @@ import Services from './pages/Services/Services'
 import ServicesComponent from './components/ServicesComponent/ServicesComponent';
 import Tracking from './pages/Tracking/Tracking';
 import Driver from './pages/driver/Driver';
+import TravelTrackingComponent from './components/TravelTrackingComponent/TravelTrackingComponent'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -39,8 +40,12 @@ const router = createBrowserRouter([
         {
           path: '/tracking',
           element: <Tracking/>
+        },
+        {
+          path: '/tracking-component',
+          element: <TravelTrackingComponent/>
         }
-       
+        
       ]
   }
 ])

@@ -1,0 +1,79 @@
+/* General container */
+.tracking-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #807e7e, #d8e2e2);
+  color: #ffffff;
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Title */
+.tracking-container h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Map container */
+.map-container {
+  width: 100%;
+  max-width: 800px;
+  height: 400px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Error message for no data */
+.map-container p {
+  font-size: 1.2rem;
+  color: #ffefef;
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+/* Cancel button */
+.btn-cancel {
+  background-color: #ff6b6b;
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-cancel:hover {
+  background-color: #ff4c4c;
+  transform: scale(1.05);
+}
+
+.btn-cancel:active {
+  background-color: #e53935;
+  transform: scale(0.98);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .map-container {
+    height: 300px;
+  }
+
+  .btn-cancel {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+}
