@@ -4,6 +4,9 @@
   margin: 0 auto; /* Centra el contenedor */
   padding: 20px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
   align-items: center;
 }
 
@@ -14,12 +17,12 @@
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centra el contenido */
+  align-items: center;
   gap: 20px;
   background-color: #fff;
-  width: 100%; /* Ocupa todo el ancho disponible */
-  max-width: 1000px; /* Amplía el ancho máximo */
-  margin-bottom: 20px; /* Separación entre secciones */
+  width: 100%;
+  max-width: 1000px;
+  margin-bottom: 20px;
 }
 
 .travel-image {
@@ -31,8 +34,9 @@
 }
 
 .travel-table {
-  width: 100%; /* Ocupa el ancho completo del contenedor */
+  width: 100%;
   border-collapse: collapse;
+  margin-top: 20px;
 }
 
 .travel-table th,
@@ -40,27 +44,31 @@
   padding: 10px;
   border: 1px solid #ddd;
   text-align: left;
-  font-size: 14px; /* Ajusta el tamaño de la fuente */
+  font-size: 14px;
 }
 
 .travel-table th {
   background-color: #f5f5f5;
-  font-weight: bold; /* Resalta los encabezados */
+  font-weight: bold;
 }
 
 .travel-table td {
-  background-color: #fff; /* Fondo blanco para celdas */
+  background-color: #fff;
+}
+
+.travel-table tr:nth-child(even) {
+  background-color: #f9f9f9;
 }
 
 /* Ajuste para pantallas pequeñas */
 @media (max-width: 768px) {
   .travel-section {
-    max-width: 100%; /* Ocupa todo el ancho disponible */
+    max-width: 100%;
   }
 
   .travel-table th,
   .travel-table td {
-    font-size: 12px; /* Reduce el tamaño de fuente en pantallas pequeñas */
+    font-size: 12px;
   }
 }
 
@@ -79,9 +87,9 @@
 }
 
 .map-container {
-  width: 100%; /* Ocupa el 100% del contenedor */
-  max-width: 600px; /* Limita el tamaño máximo */
-  height: 400px; /* Ajusta la altura del mapa */
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
   border-radius: 8px;
 }
 
@@ -103,9 +111,10 @@
   border-radius: 5px;
   border: 1px solid #ccc;
   font-size: 14px;
+  width: 100%;
 }
 
-.submit-button {
+.submit-btn {
   padding: 10px 20px;
   background-color: #000;
   color: #fff;
@@ -114,14 +123,15 @@
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s;
+  align-self: flex-end;
 }
 
-.submit-button:hover {
+.submit-btn:hover {
   background-color: #444;
 }
 
 /* Sección Reportar Incidencia */
-.incident-section {
+.report-section {
   border: 1px solid #ddd;
   padding: 20px;
   border-radius: 8px;
@@ -133,7 +143,7 @@
   max-width: 600px;
 }
 
-.incident-form {
+.report-form {
   width: 100%;
   max-width: 500px;
   display: flex;
@@ -141,7 +151,42 @@
   gap: 15px;
 }
 
-.incident-form .form-group {
+.report-form .form-group {
   display: flex;
   flex-direction: column;
+}
+
+.report-form textarea.input-field {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Estilos adicionales para mejorar la experiencia */
+h2, h3 {
+  color: #085f63;
+  font-size: 24px;
+}
+
+.status {
+  font-size: 16px;
+  color: #666;
+}
+
+label {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+input[type="number"], select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+@media (max-width: 600px) {
+  .route-section,
+  .report-section {
+    max-width: 100%;
+  }
 }

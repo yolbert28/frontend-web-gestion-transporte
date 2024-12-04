@@ -24,6 +24,16 @@ const Driver: React.FC = () => {
     punto_id: '',
     status: 1,
     tipos_toques_id: 1,
+    guias_cargas_id: '',
+    ubicacion_actual: '',
+    fecha: new Date().toISOString(),  // Campo de fecha
+  });
+
+  // Estado para el reporte de incidencia
+  const [incidencia, setIncidencia] = useState({
+    guia_id: '',
+    descripcion: '',
+    fecha: new Date().toISOString(),
   });
 
   useEffect(() => {
@@ -48,16 +58,53 @@ const Driver: React.FC = () => {
 
   const handleToqueRutaChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setToqueRuta((prev) => ({
-      ...prev,
+    let newValue: string | number = value;
+  
+    // Convertir los valores a números cuando corresponda
+    if (name === 'ruta_id' || name === 'punto_id' || name === 'tipos_toques_id' || name === 'guias_cargas_id') {
+      newValue = Number(value);  // Convertir a número
+    }
+  
+    setToqueRuta((prevState) => ({
+      ...prevState,
+      [name]: newValue,
+    }));
+  };
+
+  const handleIncidenciaChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setIncidencia((prevState) => ({
+      ...prevState,
       [name]: value,
     }));
   };
 
   const handleSubmitToqueRuta = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Verificar que los campos obligatorios estén presentes
+    if (!toqueRuta.ruta_id || !toqueRuta.punto_id || !toqueRuta.guias_cargas_id || !toqueRuta.ubicacion_actual) {
+      alert("Por favor, complete todos los campos requeridos.");
+      return;
+    }
+
+    // Asegurarse de que los valores sean números si es necesario
+    const validRutaId = Number(toqueRuta.ruta_id);
+    const validPuntoId = Number(toqueRuta.punto_id);
+    const validGuiasCargasId = Number(toqueRuta.guias_cargas_id);
+
+    if (isNaN(validRutaId) || isNaN(validPuntoId) || isNaN(validGuiasCargasId)) {
+      alert("Todos los IDs deben ser números válidos.");
+      return;
+    }
+
     try {
-      const response = await axios.post('http://localhost:3000/api/auth/createToqueRuta', toqueRuta);
+      const response = await axios.post('http://localhost:3000/api/auth/createToqueRuta', {
+        ...toqueRuta,
+        ruta_id: validRutaId,
+        punto_id: validPuntoId,
+        guias_cargas_id: validGuiasCargasId,
+      });
+
       if (response.data.success) {
         alert('Toque de ruta agregado exitosamente');
         setToqueRuta({
@@ -65,13 +112,43 @@ const Driver: React.FC = () => {
           punto_id: '',
           status: 1,
           tipos_toques_id: 1,
-        }); // Limpiar el formulario
+          guias_cargas_id: '',
+          ubicacion_actual: '',
+          fecha: new Date().toISOString(), // Reiniciar fecha
+        });
       } else {
         alert('Error al agregar el toque de ruta');
       }
     } catch (error) {
       console.error('Error al crear el toque de ruta:', error);
       alert('Hubo un error al agregar el toque de ruta');
+    }
+  };
+
+  const handleSubmitIncidencia = async (e: React.FormEvent) => {
+    e.preventDefault();
+    // Verificar que los campos obligatorios estén presentes
+    if (!incidencia.guia_id || !incidencia.descripcion) {
+      alert("Por favor, complete todos los campos requeridos.");
+      return;
+    }
+
+    try {
+      const response = await axios.post('http://localhost:3000/api/auth/reportIncidencia', incidencia);
+
+      if (response.data.success) {
+        alert('Incidencia reportada exitosamente');
+        setIncidencia({
+          guia_id: '',
+          descripcion: '',
+          fecha: new Date().toISOString(),
+        });
+      } else {
+        alert('Error al reportar la incidencia');
+      }
+    } catch (error) {
+      console.error('Error al reportar la incidencia:', error);
+      alert('Hubo un error al reportar la incidencia');
     }
   };
 
@@ -134,7 +211,7 @@ const Driver: React.FC = () => {
             <label htmlFor="ruta_id">Ruta ID</label>
             <input
               id="ruta_id"
-              type="text"
+              type="number"
               name="ruta_id"
               value={toqueRuta.ruta_id}
               onChange={handleToqueRutaChange}
@@ -145,7 +222,7 @@ const Driver: React.FC = () => {
             <label htmlFor="punto_id">Punto ID</label>
             <input
               id="punto_id"
-              type="text"
+              type="number"
               name="punto_id"
               value={toqueRuta.punto_id}
               onChange={handleToqueRutaChange}
@@ -161,7 +238,7 @@ const Driver: React.FC = () => {
               onChange={handleToqueRutaChange}
               className="input-field"
             >
-              <option value={1}>Activo</option>
+              <option value={1}>Inicio</option>
               <option value={0}>Inactivo</option>
             </select>
           </div>
@@ -169,36 +246,65 @@ const Driver: React.FC = () => {
             <label htmlFor="tipos_toques_id">Tipo de Toque</label>
             <input
               id="tipos_toques_id"
-              type="text"
+              type="number"
               name="tipos_toques_id"
               value={toqueRuta.tipos_toques_id}
               onChange={handleToqueRutaChange}
               className="input-field"
             />
           </div>
-          <button type="submit" className="submit-button">Agregar Toque</button>
+          <div className="form-group">
+            <label htmlFor="guias_cargas_id">Guía de Carga ID</label>
+            <input
+              id="guias_cargas_id"
+              type="number"
+              name="guias_cargas_id"
+              value={toqueRuta.guias_cargas_id}
+              onChange={handleToqueRutaChange}
+              className="input-field"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="ubicacion_actual">Ubicación Actual</label>
+            <input
+              id="ubicacion_actual"
+              type="text"
+              name="ubicacion_actual"
+              value={toqueRuta.ubicacion_actual}
+              onChange={handleToqueRutaChange}
+              className="input-field"
+            />
+          </div>
+          <button type="submit" className="submit-btn">Agregar Toque</button>
         </form>
       </section>
 
-      <section className="incident-section">
+      {/* Reportar Incidencia */}
+      <section className="report-section">
         <h2>Reportar Incidencia</h2>
-        <form className="incident-form">
+        <form className="report-form" onSubmit={handleSubmitIncidencia}>
           <div className="form-group">
-            <label htmlFor="subject">Asunto</label>
-            <input id="subject" type="text" className="input-field" />
+            <label htmlFor="guia_id">Guía ID</label>
+            <input
+              id="guia_id"
+              type="number"
+              name="guia_id"
+              value={incidencia.guia_id}
+              onChange={handleIncidenciaChange}
+              className="input-field"
+            />
           </div>
           <div className="form-group">
-            <label htmlFor="issueType">Seleccione Tipo Incidencia</label>
-            <select id="issueType" className="input-field">
-              <option value="">-- Seleccione --</option>
-              <option value="retraso">Retraso</option>
-              <option value="accidente">Accidente</option>
-              <option value="otro">Otro</option>
-            </select>
+            <label htmlFor="descripcion">Descripción</label>
+            <textarea
+              id="descripcion"
+              name="descripcion"
+              value={incidencia.descripcion}
+              onChange={handleIncidenciaChange}
+              className="input-field"
+            />
           </div>
-          <button type="submit" className="submit-button">
-            Reportar Incidencia
-          </button>
+          <button type="submit" className="submit-btn">Reportar Incidencia</button>
         </form>
       </section>
     </div>
