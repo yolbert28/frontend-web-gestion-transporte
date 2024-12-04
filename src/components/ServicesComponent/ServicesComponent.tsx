@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "./ServicesComponent.css";
 import Map from "../Map";
 import axios from "axios";
@@ -7,7 +6,6 @@ import axios from "axios";
 const GRAPH_HOPPER_API_KEY = "55c799bd-36f6-4fd7-873f-b6d0902f2570";
 
 export default function ServicesComponent(): JSX.Element {
-  const navigate = useNavigate();
   const [clienteDocumento, setclienteDocumento] = useState("");
   const [fechaSalida, setFechaSalida] = useState("");
   const [origen, setOrigen] = useState("");
@@ -21,7 +19,7 @@ export default function ServicesComponent(): JSX.Element {
   const [isSimulating, setIsSimulating] = useState(false); // Indica si la simulación está en curso
   const [loading, setLoading] = useState(false);
   const [metodoPago, setMetodoPago] = useState("");
-  const [isServiceRegistered, setIsServiceRegistered] = useState(false); // Nuevo estado para controlar la visualización del botón
+ 
 
 
   const getTodayDate = () => {
@@ -137,7 +135,7 @@ export default function ServicesComponent(): JSX.Element {
         const response = await axios.post('http://localhost:3000/api/auth/services', requestData);
         if (response.status === 201) {
           alert("Solicitud registrada exitosamente");
-          setIsServiceRegistered(true); 
+        
         } else {
           alert("Hubo un problema al registrar la solicitud");
         }
@@ -152,11 +150,7 @@ export default function ServicesComponent(): JSX.Element {
 
     setLoading(false);
 };
-const handleCancelTravel = () => {
-  // Redirigir al usuario a la página de servicios después de cancelar
-  navigate("/services");
-  alert("Cancelando el viaje");
-};
+
   return (
     <div className="main-container">
       <div className="content-container">
@@ -238,13 +232,7 @@ const handleCancelTravel = () => {
           <button className="btn-contratar" onClick={handleContratar} disabled={loading}>
             {loading ? "Cargando..." : "Contratar"}
           </button>
-          {isServiceRegistered && (
-            <div className="cancel-button-container">
-              <button className="btn-cancel" onClick={handleCancelTravel}>
-                Cancelar Viaje
-              </button>
-            </div>
-          )}
+        
         </div>
         <div className="map-container">
           <Map coordinates={coordinates} route={route} />
