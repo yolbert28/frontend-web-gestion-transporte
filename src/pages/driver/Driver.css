@@ -17,8 +17,8 @@
   align-items: center; /* Centra el contenido */
   gap: 20px;
   background-color: #fff;
-  width: 100%;
-  max-width: 600px; /* Establece un ancho máximo */
+  width: 100%; /* Ocupa todo el ancho disponible */
+  max-width: 1000px; /* Amplía el ancho máximo */
   margin-bottom: 20px; /* Separación entre secciones */
 }
 
@@ -31,7 +31,7 @@
 }
 
 .travel-table {
-  width: 100%;
+  width: 100%; /* Ocupa el ancho completo del contenedor */
   border-collapse: collapse;
 }
 
@@ -40,13 +40,31 @@
   padding: 10px;
   border: 1px solid #ddd;
   text-align: left;
+  font-size: 14px; /* Ajusta el tamaño de la fuente */
 }
 
 .travel-table th {
   background-color: #f5f5f5;
+  font-weight: bold; /* Resalta los encabezados */
 }
 
-/* Sección Ruta Detalle */
+.travel-table td {
+  background-color: #fff; /* Fondo blanco para celdas */
+}
+
+/* Ajuste para pantallas pequeñas */
+@media (max-width: 768px) {
+  .travel-section {
+    max-width: 100%; /* Ocupa todo el ancho disponible */
+  }
+
+  .travel-table th,
+  .travel-table td {
+    font-size: 12px; /* Reduce el tamaño de fuente en pantallas pequeñas */
+  }
+}
+
+/* Sección Agregar Toques de Rutas */
 .route-section {
   border: 1px solid #ddd;
   padding: 20px;
@@ -60,10 +78,10 @@
   margin-bottom: 20px;
 }
 
-.map-image {
+.map-container {
   width: 100%; /* Ocupa el 100% del contenedor */
-  max-width: 300px; /* Limita el tamaño máximo de la imagen */
-  height: auto;
+  max-width: 600px; /* Limita el tamaño máximo */
+  height: 400px; /* Ajusta la altura del mapa */
   border-radius: 8px;
 }
 
