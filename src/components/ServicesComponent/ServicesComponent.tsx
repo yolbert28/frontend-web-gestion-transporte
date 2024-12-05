@@ -211,8 +211,10 @@ export default function ServicesComponent(): JSX.Element {
               className="input-field"
             >
               <option value="">Selecciona el tipo de transporte</option>
-              <option value="1">Transporte Ligero</option>
-              <option value="2">Transporte Pesado</option>
+              <option value="1">Camión de carga pesada</option>
+              <option value="2">Camión de carga Refrigerada</option>
+              <option value="3">Camion de envíos nacionales</option>
+              <option value="4">Bus viajero</option>
             </select>
           </div>
           <div className="form-group">
