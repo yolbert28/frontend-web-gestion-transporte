@@ -3,7 +3,7 @@ import "./ServicesComponent.css";
 import Map from "../Map";
 import axios from "axios";
 
-const GRAPH_HOPPER_API_KEY = "55c799bd-36f6-4fd7-873f-b6d0902f2570";
+const GRAPH_HOPPER_API_KEY = "";
 
 export default function ServicesComponent(): JSX.Element {
   const [clienteDocumento, setclienteDocumento] = useState("");
